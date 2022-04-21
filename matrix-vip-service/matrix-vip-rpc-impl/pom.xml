@@ -13,40 +13,6 @@
 
 
 
-    <profiles>
-        <!--开发环境-->
-        <profile>
-            <id>dev</id>
-            <properties>
-                <package.environment>dev</package.environment>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <!--测试环境-->
-            <id>test</id>
-            <properties>
-                <package.environment>test</package.environment>
-            </properties>
-        </profile>
-        <profile>
-            <!--预发布环境-->
-            <id>pre</id>
-            <properties>
-                <package.environment>pre</package.environment>
-            </properties>
-        </profile>
-        <profile>
-            <!--生产环境-->
-            <id>release</id>
-            <properties>
-                <package.environment>release</package.environment>
-            </properties>
-        </profile>
-    </profiles>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,9 +24,9 @@
             <artifactId>matrix-vip-rpc-facade</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
-        
     </dependencies>
+    
+    
     <build>
         <finalName>matrix-vip-rpc-impl</finalName>
         <defaultGoal>compile</defaultGoal>

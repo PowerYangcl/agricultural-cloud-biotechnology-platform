@@ -9,7 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>matrix-vip-rpc-facade</artifactId>
-    <!-- <packaging>jar</packaging> -->
+    <packaging>jar</packaging>
 
     <dependencies>
     </dependencies>
