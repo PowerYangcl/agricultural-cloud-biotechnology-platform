@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    										   http://www.springframework.org/schema/beans/spring-beans.xsd
+    										   http://code.alibabatech.com/schema/dubbo
+   											   http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!---导入spring 配置 Sjh-20180922-->
+    <import resource="matrix-spring.xml"></import>
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="dict-info-service"/>
+
+    <!--&lt;!&ndash; 使用Zookeeper注册中心暴露服务地址 &ndash;&gt;-->
+    <dubbo:registry protocol="zookeeper" address="10.12.51.139:2181" client="curator" default="true"/>
+
+    <!--&lt;!&ndash; 使用Zookeeper注册中心暴露服务地址 &ndash;&gt;-->
+     <!--<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" client="curator" default="true"/>-->
+
+    <!-- 用dubbo协议在20881端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20881"/>
+
+    <!--sjh-->
+    <!--1.建议各注入的服务有自己基础配置（负载策略、灰度版本、...） ：如timeout、retries 等-->
+    <!--2.建议将一些公共的属性参数配置转移至zk，在zk建立各环境节点属性配置-->
+    <dubbo:provider delay="300"
+                    timeout="10000"
+                    executes="30"
+                    actives="10"
+                    loadbalance="roundrobin"
+                    cluster="failover"
+                    retries="2"/>
+
+    <!-- 提供者示例 - Yangcl - 20180914-->
+    <dubbo:service ref="mipDemoRpcService" group="mip.demo" version="1.0.0" interface="com.matrix.rpc.IMipDemoRpcService"/>
+
+    
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
