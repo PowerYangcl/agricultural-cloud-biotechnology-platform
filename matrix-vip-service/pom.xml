@@ -17,7 +17,7 @@
 
     <modules>
 		<!-- Http接口 -->
-		<!-- <module>matrix-vip-api</module> -->
+		<module>matrix-vip-api</module>
         <!-- Rpc接口 -->
         <module>matrix-vip-rpc-facade</module>
         <!-- Rpc接口实现 -->

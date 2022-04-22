@@ -10,6 +10,13 @@
 /matrix-vip-service/.classpath
 /matrix-vip-service/.DS_Store
 
+
+/matrix-vip-service/matrix-vip-api/target/
+/matrix-vip-service/matrix-vip-api/.settings/
+/matrix-vip-service/matrix-vip-api/.project 
+/matrix-vip-service/matrix-vip-api/.classpath
+/matrix-vip-service/matrix-vip-api/.DS_Store
+
 /matrix-vip-service/matrix-vip-rpc-facade/target/
 /matrix-vip-service/matrix-vip-rpc-facade/.settings/
 /matrix-vip-service/matrix-vip-rpc-facade/.project 

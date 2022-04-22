@@ -1,0 +1,20 @@
+server:
+  port: 29011
+  servlet: 
+    context-path: /matrix-vip-api
+spring:
+  profiles:
+    active: dev
+  jackson:
+    time-zone: "GMT+8"
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+      use-suffix-pattern: true
