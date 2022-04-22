@@ -29,13 +29,13 @@
         <!-- 主要依赖包版本 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-        <dependencies>
-            <dependency>
-				<groupId>com.matrix</groupId>
-				<artifactId>matrix-cache</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+    
+    <dependencies>
+		<dependency>
+			<groupId>com.matrix</groupId>
+			<artifactId>matrix-cache</artifactId>
+			<version>${project.version}</version>
+		</dependency>    
     </dependencies>
 </project>
 
