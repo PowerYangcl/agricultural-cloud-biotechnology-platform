@@ -20,6 +20,12 @@
 			<artifactId>matrix-web-adapter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>com.matrix.acbp</groupId>
+            <artifactId>matrix-vip-rpc-facade</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     
     

@@ -33,40 +33,57 @@
         <dubbo.version>3.0.6</dubbo.version>
         
     </properties>
-    
+
     <!-- 
     	加了dependencyManagement套在dependencies之外，此处是本工程的所有第三方依赖管理“库”，
     	子工程无论多深，因其parent指向了此工程，所以可以直接依赖下面的jar.无需version。
     	在这里的第三方version最好提到上面properties中管理，做到统一升级第三方库版本
     -->
     <dependencyManagement>
-	    <dependencies>
-			<!-- <dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency> -->
-			
-			<!-- 
-					TODO 这里的依赖貌似传递不到后面
-			 -->
-			
-	        <dependency>
-	            <groupId>org.projectlombok</groupId>
-	            <artifactId>lombok</artifactId>
-	            <optional>true</optional>
-	        </dependency>
-			
-	        <dependency>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-starter</artifactId>
-	        </dependency>
-	        
-	        
-	    </dependencies>
-    </dependencyManagement>
+   	</dependencyManagement>
+    
+    <dependencies>
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency> -->
+		
+		<!-- 
+				TODO 这里的依赖貌似传递不到后面
+		 -->
+        <dependency>
+			<groupId>com.matrix</groupId>
+			<artifactId>matrix-cache</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+        <dependency>
+			<groupId>com.matrix</groupId>
+			<artifactId>matrix-dubbo</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+		          <exclusion>
+		                <groupId>ch.qos.logback</groupId>
+		                <artifactId>logback-classic</artifactId>
+		            </exclusion>
+		     </exclusions>
+        </dependency>
+        
+    </dependencies>
+
 
    
 </project>

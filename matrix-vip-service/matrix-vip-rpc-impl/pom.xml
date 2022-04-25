@@ -15,7 +15,26 @@
 
 
     <properties>
+        <!-- 全局性控制项目编码为UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <druid.version>1.1.10</druid.version> <!-- 需要和mysql-connector一起升级 -->
+        <!--MyBatis-Spring		MyBatis	Spring 	Spring Framework    参考建议见官网：http://mybatis.org/spring/zh/index.html-->
+        <!--2.0	                            3.5+	                    5.0+ -->
+        <mybatis.version>3.5.6</mybatis.version>
+        <mybatis-spring.version>2.0.6</mybatis-spring.version>
+        <pagehelper.version>5.1.10</pagehelper.version>
+        
+        <log4j.version>1.2.17</log4j.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
+        <commons-lang3.version>3.2.1</commons-lang3.version>
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <fastjson.version>1.2.75</fastjson.version>
+        <zookeeper.version>3.4.11</zookeeper.version>		<!-- ZooKeeper 版本 -->
+        <curator.version>4.0.0</curator.version>					<!-- Curator(ZooKeeper客户端)版本 -->
+        
+        <httpclient.version>4.5.1</httpclient.version>
     </properties>
 
     <dependencies>
@@ -24,88 +43,74 @@
             <artifactId>matrix-vip-rpc-facade</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
-		<dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>	
-        
-        <!-- Zookeeper dependencies -->
         <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-dependencies-zookeeper</artifactId>
-            <version>${dubbo.version}</version>
-            <type>pom</type>
+			<groupId>com.matrix</groupId>
+			<artifactId>matrix-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
             <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
+		          <exclusion>
+		                <groupId>ch.qos.logback</groupId>
+		                <artifactId>logback-classic</artifactId>
+		            </exclusion>
+		     </exclusions>
         </dependency>
+		
+		 <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid-spring-boot-starter</artifactId>
+		    <version>1.2.4</version>
+		</dependency>
+		
+        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>2.1.4</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <!-- Mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+ 
     </dependencies>
     
-    
-    <build>
-        <finalName>matrix-vip-rpc-impl</finalName>
-        <defaultGoal>compile</defaultGoal>
-
+    <!-- https://www.cnblogs.com/xiaoyao-001/p/10247949.html -->
+	<build>
         <resources>
             <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-
-            <resource>
                 <directory>src/main/resources</directory>
-            </resource>
-            <resource>
-                <directory>src/main/assembly</directory>
-                <excludes>
-                    <exclude>**/*.properties</exclude>
-                </excludes>
+                <filtering>false</filtering>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- 编译时跳过Test文件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-        </plugins>
     </build>
-
 </project>

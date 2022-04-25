@@ -1,20 +1,32 @@
 package com.matrix;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import com.matrix.base.BaseLog;
+import com.matrix.zk.EmbeddedZooKeeper;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 public class ServiceApp {
 
     public static void main(String[] args) throws IOException {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{
-                "classpath*:applicationContext.xml",  
-                });
-        context.start();
+        try {
+        	BaseLog.getInstance().setLogger(null).sysoutInfo("matrix-vip-rpc 开始启动" , ServiceApp.class);
+        	
+        	new EmbeddedZooKeeper(2181, false).start();
+        	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ServiceApp.class);
+        	context.start();
+        	
+        	BaseLog.getInstance().setLogger(null).sysoutInfo("matrix-vip-rpc 启动完成" , ServiceApp.class);
+			new CountDownLatch(1).await();
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
         
-        System.out.println("dict-info-service 启动成功...");
-        System.in.read();  
+        
     }
 }
 
