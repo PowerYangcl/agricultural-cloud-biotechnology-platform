@@ -23,7 +23,7 @@ public class DemoServiceImpl extends BaseClass implements IDemoService {
 
 	@Override
 	public String findDemoMessageConfig(String msg) {
-		return this.getConfig("matrix-vip-rpc.rpc_name");
+		return this.getConfig("matrix-vip-rpc.rpc_name") + " - " + msg;
 	}
 
 }

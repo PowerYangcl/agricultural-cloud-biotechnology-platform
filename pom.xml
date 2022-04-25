@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-   	<parent>	<!-- 使用最高版本的spring-boot覆盖所有引用到的第三方项目中的低版本spring-boot -->
-	   <groupId>org.springframework.boot</groupId>
+   	<parent>	
+	   <groupId>org.springframework.boot</groupId>					<!-- 使用最高版本的spring-boot覆盖所有引用到的第三方项目中的低版本spring-boot -->
 	   <artifactId>spring-boot-starter-parent</artifactId>
 	   <version>2.6.6</version>
 	</parent>
@@ -28,10 +28,8 @@
     <properties>
         <!-- 全局性控制项目编码为UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
         <dubbo.version>3.0.6</dubbo.version>
-        
     </properties>
 
     <!-- 
@@ -43,6 +41,9 @@
    	</dependencyManagement>
     
     <dependencies>
+    	<!-- 
+				TODO dependencyManagement 这里的依赖貌似传递不到后面
+		 -->
 		<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-dependencies</artifactId>
@@ -51,14 +52,23 @@
 			<scope>import</scope>
 		</dependency> -->
 		
-		<!-- 
-				TODO 这里的依赖貌似传递不到后面
-		 -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+		          <exclusion>
+		                <groupId>ch.qos.logback</groupId>
+		                <artifactId>logback-classic</artifactId>
+		            </exclusion>
+		     </exclusions>
+        </dependency>
+		
         <dependency>
 			<groupId>com.matrix</groupId>
 			<artifactId>matrix-cache</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
         <dependency>
 			<groupId>com.matrix</groupId>
 			<artifactId>matrix-dubbo</artifactId>
@@ -70,22 +80,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-		
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <exclusions>
-		          <exclusion>
-		                <groupId>ch.qos.logback</groupId>
-		                <artifactId>logback-classic</artifactId>
-		            </exclusion>
-		     </exclusions>
-        </dependency>
-        
     </dependencies>
-
-
-   
 </project>
 
 

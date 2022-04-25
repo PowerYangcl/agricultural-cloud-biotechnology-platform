@@ -20,7 +20,7 @@
 		<module>matrix-vip-api</module>
         <!-- Rpc接口 -->
         <module>matrix-vip-rpc-facade</module>
-        <!-- Rpc接口实现 -->
+        <!-- Rpc业务实现 -->
         <module>matrix-vip-rpc-impl</module>
     </modules>
 

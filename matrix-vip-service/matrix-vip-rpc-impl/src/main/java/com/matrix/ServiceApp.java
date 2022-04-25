@@ -4,7 +4,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.matrix.base.BaseLog;
-import com.matrix.zk.EmbeddedZooKeeper;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
@@ -16,7 +15,6 @@ public class ServiceApp {
         try {
         	BaseLog.getInstance().setLogger(null).sysoutInfo("matrix-vip-rpc 开始启动" , ServiceApp.class);
         	
-        	new EmbeddedZooKeeper(2181, false).start();
         	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ServiceApp.class);
         	context.start();
         	
