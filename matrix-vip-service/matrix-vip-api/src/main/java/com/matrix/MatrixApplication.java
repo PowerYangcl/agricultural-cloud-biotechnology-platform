@@ -7,6 +7,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.matrix.base.BaseLog;
 
+/**
+ * @description: localhost:29011/matrix-vip-api/
+ * 
+ * @author Yangcl
+ * @date 2022-7-4 17:41:19
+ * @home https://github.com/PowerYangcl
+ * @path matrix-vip-api / com.matrix.MatrixApplication.java
+ * @version 1.6.1.0-platform-init
+ */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableTransactionManagement // 启注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
 public class MatrixApplication {

@@ -3,6 +3,8 @@ server:
   servlet: 
     context-path: /matrix-vip-api
 spring:
+  application:
+    name: matrix-vip-api
   profiles:
     active: dev
   jackson:
